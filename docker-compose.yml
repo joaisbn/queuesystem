@@ -1,11 +1,12 @@
-version: "3.1"
 services:
     www:
         build: .
         ports: 
-            - "8001:80"
+            - "8002:80"
         volumes:
             - ./www:/var/www/html/
+            - ./php.ini:/usr/local/etc/php/php.ini
+            - ./vhost.conf:/etc/apache2/sites-enabled/000-default.conf
         links:
             - db
         networks:
@@ -26,15 +27,15 @@ services:
             - persistent:/var/lib/mysql
         networks:
             - default
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        links: 
-            - db:db
-        ports:
-            - 8000:80
-        environment:
-            MYSQL_USER: user
-            MYSQL_PASSWORD: test
-            MYSQL_ROOT_PASSWORD: test 
+    #phpmyadmin:
+        #image: phpmyadmin/phpmyadmin
+        #links: 
+            #- db:db
+        #ports:
+            #- 8000:80
+        #environment:
+            #MYSQL_USER: user
+            #MYSQL_PASSWORD: test
+            #MYSQL_ROOT_PASSWORD: test 
 volumes:
     persistent:
