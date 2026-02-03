@@ -1,5 +1,5 @@
 services:
-    www:
+    web:
         build: .
         ports: 
             - "8002:80"
